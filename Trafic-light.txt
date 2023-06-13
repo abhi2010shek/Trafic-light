@@ -1,0 +1,62 @@
+package FSD.moudle1;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class class1 extends JFrame implements ActionListener {
+
+    private JButton redButton, yellowButton, greenButton;
+    private JLabel messageLabel;
+
+    public class1() {
+        super("Traffic Light Simulation");
+
+        // set up the frame
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(700, 500);
+
+        // create the buttons
+        redButton = new JButton("Red");
+        yellowButton = new JButton("Yellow");
+        greenButton = new JButton("Green");
+
+        // create the message label
+        messageLabel = new JLabel("", JLabel.CENTER);
+
+        // set up the layout
+        setLayout(new GridLayout(4, 5));
+
+        // add the buttons and message label to the frame
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout());
+        buttonPanel.add(redButton);
+        buttonPanel.add(yellowButton);
+        buttonPanel.add(greenButton);
+        add(buttonPanel);
+        add(messageLabel);
+
+        // add action listeners to the buttons
+        redButton.addActionListener(this);
+        yellowButton.addActionListener(this);
+        greenButton.addActionListener(this);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == redButton) {
+            messageLabel.setText("Stop");
+            messageLabel.setForeground(Color.RED);
+        } else if (e.getSource() == yellowButton) {
+            messageLabel.setText("Ready");
+            messageLabel.setForeground(Color.YELLOW);
+        } else if (e.getSource() == greenButton) {
+            messageLabel.setText("Go");
+            messageLabel.setForeground(Color.GREEN);
+        }
+    }
+
+    public static void main(String[] args) {
+        class1 frame = new class1();
+        frame.setVisible(true);
+    }
+}
